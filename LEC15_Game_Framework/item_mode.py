@@ -32,6 +32,12 @@ def handle_events():
                 }[event.key]
                 game_framework.pop_mode()
                 return
+        elif event.type == SDL_KEYUP:
+            # Remember released movement keys while the item screen is open.
+            previous_state = play_mode.boy.state
+            play_mode.boy.handle_event(event)
+            if previous_state == 'RUN' and play_mode.boy.state == 'IDLE':
+                play_mode.boy.idle_started_at = play_mode.pause_started_at
 
 
 def update():
