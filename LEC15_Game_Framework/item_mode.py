@@ -3,6 +3,7 @@ from pathlib import Path
 from pico2d import *
 import game_framework
 import game_world
+import play_mode
 
 
 def init():
@@ -22,6 +23,13 @@ def handle_events():
             return
         elif event.type == SDL_KEYDOWN and event.key == SDLK_i:
             if not getattr(event, 'repeat', 0):
+                game_framework.pop_mode()
+                return
+        elif event.type == SDL_KEYDOWN and event.key in (SDLK_0, SDLK_1, SDLK_2):
+            if not getattr(event, 'repeat', 0):
+                play_mode.boy.ball_type = {
+                    SDLK_0: 0, SDLK_1: 1, SDLK_2: 2
+                }[event.key]
                 game_framework.pop_mode()
                 return
 

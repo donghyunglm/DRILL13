@@ -17,6 +17,7 @@ class Boy:
         self.idle_started_at = get_time()
         self.dir = 0
         self.face_dir = 1
+        self.ball_type = 1  # 0: none, 1: small, 2: large
         self.pressed_keys = set()
 
         self.machine = Machine(
