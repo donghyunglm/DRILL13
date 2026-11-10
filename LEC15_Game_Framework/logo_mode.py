@@ -1,0 +1,27 @@
+from pathlib import Path
+
+import game_framework
+import title_mode
+from pico2d import *
+
+def init():
+    global image, logo_start_time
+    image = load_image(str(Path(__file__).with_name('tuk_credit.png')))
+    logo_start_time = get_time()
+
+def finish():
+    global image
+    del image
+
+def update():
+    if get_time() - logo_start_time >= 2.0:
+        game_framework.change_mode(title_mode)
+
+def render():
+    clear_canvas()
+    image.draw(400, 300)
+    update_canvas()
+
+def handle_events():
+# 현재 이벤트들을 소비
+    events = get_events()   
