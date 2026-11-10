@@ -39,6 +39,8 @@ def run(start_mode):
         start_mode.init()
         while running:
             stack[-1].handle_events()
+            if not running:
+                break
             stack[-1].update()
             stack[-1].render()
             time.sleep(0.02)
